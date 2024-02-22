@@ -1,0 +1,447 @@
+@charset "UTF-8";
+body{
+    margin: 0;
+    height: 100vh;
+    background-color: #ba9bc0;
+    font-family:'微軟正黑體';
+}
+#nav{
+    width: 100%;
+    height: 70px;
+    background-color: #37389c;
+    position: fixed;
+    z-index: 1;
+   
+}
+#all{
+    width: 65%;
+    height: 1500px;
+    background-color: #f8e6f4;
+    margin: auto;
+    
+}
+#banner{
+    width: 100%;
+    height: 500px;
+    background-color: #4e1c1c;
+    position: relative;
+    border-radius: 15px;
+    background-image: url(./img/back.jpg);
+    background-size: contain;
+}
+#banner-change{
+    width: 220px;
+    height: 150px ;
+    /* background-color: #fff; */
+    position: absolute;
+    right: 20px;
+    bottom: 25px;
+}
+#stand-power,#change-background{
+    width: 220px;
+    height: 50px ;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #d0d2f1;
+    border-radius: 10px;
+}
+#stand-power{
+    position: absolute;
+    right: 15px;
+    top: 20px;
+}
+#change-background{
+    position: absolute;
+    right: 15px;
+    bottom: 20px;
+}
+#stand-power-icon{
+    width: 20px;
+    height: 20px;
+    /* background-color: #dd2828; */
+    position: absolute;
+    bottom: 15px;
+    left:10px ;
+    background-image: url(./img/person-circle.svg);
+    background-size: cover;
+}
+#stand-power-text{
+    margin-left: 40px;
+    margin-top:11px ;
+}
+#change-background-icon{
+    width: 20px;
+    height: 20px;
+    /* background-color: #dd2828; */
+    position: absolute;
+    bottom: 15px;
+    left: 10px;
+    background-image: url(./img/camera-fill.svg);
+    background-size: cover;
+}
+#change-background-text{
+    margin-left: 40px;
+    margin-top:11px ;
+    letter-spacing: 8px;
+}
+
+#bigpic{
+    width: 180px;
+    height: 180px;
+    background-color: #f8e6f4;
+    border-radius: 50%;
+    position: absolute;
+    bottom: -120px;
+    left: 20px ;
+}
+#pic{
+    width: 160px;
+    height: 160px;
+    background-color: #a3a3a3;
+    border-radius: 50%;
+    margin: 10px;
+    background-image: url(./img/pic-human.png);
+    background-size: contain;
+}
+#pic-icon{
+    width: 40px;
+    height: 40px;
+    background-color: #985db1;
+    border-radius: 50%;
+    position: absolute;
+    left: 130px;
+    bottom: 10px;  
+    
+   
+    
+}
+#intro{
+    width: 1000px;
+    height: 100px;
+    /* background-color: #b5e064; */
+    margin-left: 220px;
+    position: relative;
+}
+#nic-name{
+    font-size: 40px;
+    font-weight: 700;
+    float: left;
+}
+#friens-number{
+    color: #919191;
+    clear: both;
+    float: left;
+}
+#intro-add{
+    width: 500px;
+    height: 50px;
+    /* background-color: #fff; */
+    float: right;
+    position: absolute;
+    right:calc(50% - 320px);
+    bottom: 25px;
+}
+#intro-add1{
+    width: 200px;
+    height: 50px;
+    background-color: #4c4ee4;
+    border: solid 1px;
+    border-radius: 10px;
+    border-width:1px 1px 3px 1px;
+    position: absolute;
+    bottom: calc(20% - 11px);
+
+}
+#intro-add1-icon{
+    width: 20px;
+    height: 20px;
+    /* background-color: #832d2d; */
+    position: absolute;
+    fill: #fff;
+    left: 10px;
+    bottom: calc(50% - 10px );
+    background-image: url(./img/plus.svg);
+}
+#intro-add1-text{
+    float: left;
+    position: absolute;
+    left: 35px;
+    bottom: calc(50% - 12px );
+    color: #ffffff;
+}
+#intro-add2{
+    width:180px;
+    height: 50px;
+    position: absolute;
+    left: 45%;
+    bottom: 0;
+    background-color: #c7cff1;
+    border: solid 1px;
+    border-radius: 10px;
+    border-width:1px 1px 3px 1px;
+}
+#intro-add2-icon{
+    width: 20px;
+    height: 20px;
+    /* background-color: #832d2d; */
+    position: absolute;
+    left: 10px;
+    bottom: calc(50% - 10px );
+    background-image: url(./img/pencil-square.svg);
+    background-size: cover;
+}
+#intro-add2-text{
+    float: left;
+    position: absolute;
+    left: 38px;
+    bottom: calc(50% - 12px );
+}
+#intro-add3{
+    width: 50px;
+    height: 50px;
+    background-color: #c7cff1;
+    position: absolute;
+    right:30px;
+    bottom: 0;
+    border-radius: 10px;
+    border: solid 1px;
+    border-width:1px 1px 3px 1px;
+}
+#intro-add3-icon{
+    width: 25px;
+    height: 25px;
+    /* background-color: #832d2d; */
+    position: absolute;
+    left: 12.5px;
+    bottom: calc(50% - 12.5px );
+    background-image: url(./img/else.svg);
+    background-size: cover;
+}
+
+
+/* nav導覽列的ICON */
+#search{
+    width: 450px;
+    height: 70px;
+    /* background-color: #922b2b; */
+    float: left;
+}
+#search-icon{
+    width: 54px;
+    height: 54px;
+    background-color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    bottom:10px;
+    left: 20px;
+    background-image: url(./img/2023_Facebook_icon.svg.png);
+    background-size: cover;
+    
+}
+#search-bar{
+    width: 320px;
+    height: 48px;
+    background-color: #c7cff1;
+    position: absolute;
+    bottom:13px;
+    left: calc(20px + 54px + 10px);
+    border-radius: 25px;   
+    
+}
+#search-bar-icon{
+    width: 30px;
+    height: 30px;
+    /* background-color: #ffffff; */
+    position: absolute;
+    left:15px ;
+    bottom:calc(50% - 15px) ;
+    background-image: url(./img/search\ \(1\).svg);
+    background-size: cover;
+}
+#search-bar-text{
+    font-size: 20px;
+    text-align: justify;
+    line-height: 2.5;
+    position: absolute;
+    left:60px ;
+
+}
+#icon-mid{
+    width: calc(100% - 2000px);
+    height: 70px;
+    /* background-color: #4868d1; */
+    float: left;
+   
+}
+#icon-mid1{
+    width: 150px;
+    height: 70px;
+    /* background-color: rgb(90, 91, 156); */
+    float: left;
+    margin-right: 5px;
+    
+}
+#icon-mid1-icon{
+    width: 30px;
+    height: 30px;
+    /* background-color: #9b3636; */
+    position: absolute;
+    left: calc(50% - 245px);
+    bottom: calc(50% - 15px);
+    background-image: url(./img/home.svg);
+    background-size: cover;
+    
+
+}
+#icon-mid2{
+    width: 150px;
+    height: 70px;
+    /* background-color: #fff; */
+    float: left;
+    margin-right: 5px;
+}
+#icon-mid2-icon{
+    width: 30px;
+    height: 30px;
+    /* background-color: #9b3636; */
+    position: absolute;
+    left: calc(50% - 90px);
+    bottom: calc(50% - 15px);
+    background-image: url(./img/video.svg);
+    background-size: cover;
+}
+#icon-mid3{
+    width: 150px;
+    height: 70px;
+    /* background-color: #fff; */
+    float: left;
+    margin-right: 5px;
+}
+#icon-mid3-icon{
+    width: 30px;
+    height: 30px;
+    /* background-color: #9b3636; */
+    position: absolute;
+    left: calc(50% + 65px);
+    bottom: calc(50% - 15px);
+    background-image: url(./img/shop.svg);
+    background-size: cover;
+}
+#icon-mid4{
+    width: 150px;
+    height: 70px;
+    /* background-color: #fff; */
+    float: left;
+    margin-right: 5px;
+}
+#icon-mid4-icon{
+    width: 30px;
+    height: 30px;
+    /* background-color: #9b3636; */
+    position: absolute;
+    left: calc(50% + 220px);
+    bottom: calc(50% - 15px);
+    background-image: url(./img/friends.svg);
+    background-size: cover;
+}
+#icon-mid5{
+    width: 150px;
+    height: 70px;
+    /* background-color: #fff; */
+    
+}
+#icon-mid5-icon{
+    width: 30px;
+    height: 30px;
+    /* background-color: #9b3636; */
+    position: absolute;
+    left: calc(50% + 370px);
+    bottom: calc(50% - 15px);
+    background-image: url(./img/game.svg);
+    background-size: cover;
+}
+
+
+#icon-R{
+    width:calc(100vw - 1350px);
+    height: 70px;
+    /* background-color: #d9ee8c; */
+    float: right;  
+    position: relative;
+    margin-right: 20px;
+}
+
+#icon-R1{
+    width: 54px;
+    height: 54px;
+    background-color: #cdd2f0;
+    border-radius: 50%;
+    position: absolute;
+    right: calc(54*3px + 10*3px);
+    bottom:10px;
+}
+#icon-R1-icon{
+    width: 30px;
+    height: 30px;
+    /* background-color: #9b3636; */
+    position: absolute;
+    left: calc(50% - 15px);
+    bottom: calc(50% - 15px);
+    background-image: url(./img/funktion.svg);
+    background-size: cover;
+    
+}
+#icon-R2{
+    width: 54px;
+    height: 54px;
+    background-color:  #cdd2f0;
+    border-radius: 50%;
+    position: absolute;
+    right: calc(54*2px + 10*2px);
+    bottom:10px;
+}
+#icon-R2-icon{
+    width: 30px;
+    height: 30px;
+    /* background-color: #9b3636; */
+    position: absolute;
+    left: calc(50% - 15px);
+    bottom: calc(50% - 15px);
+    background-image: url(./img/massenger.svg);
+    background-size: cover;
+    
+}
+
+#icon-R3{
+    width: 54px;
+    height: 54px;
+    background-color: #cdd2f0;
+    border-radius: 50%;
+    position: absolute;
+    right: calc(54px + 10px);
+    bottom:10px; 
+}
+#icon-R3-icon{
+    width: 30px;
+    height: 30px;
+    /* background-color: #9b3636; */
+    position: absolute;
+    left: calc(50% - 15px);
+    bottom: calc(50% - 15px);
+    background-image: url(./img/alart.svg);
+    background-size: cover;
+    
+
+}
+#icon-R4{
+    width: 54px;
+    height: 54px;
+    background-color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    right: 0;
+    bottom:10px;
+    background-image: url(./img/pic-human.png);
+    background-size: cover;
+}
+
+

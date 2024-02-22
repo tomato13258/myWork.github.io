@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        table,
+        td,
+        th {
+            border: 2px solid #000;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        table {
+            width: 40%;
+        }
+
+        .result-all {
+            display: flex;
+            border: 1px dashed #000;
+            width: 30%;
+            justify-content: space-around;
+        }
+        
+        
+    </style>
+</head>
+
+<body>
+    <H1>BMI計算機</H1>
+    <H4>身體質量指數(Body Mass Index，簡稱BMI)是公認用來估計肥胖程度的方法</H4>
+    <H3>BMI=體重(公斤)/身高的平方(公尺)</H3>
+
+    <div class="coculate-area">
+        <div class="">
+            <span>我的性別</span>
+            <input type="radio" name="gender" id="gender-man"><label for="gender-man">男</label>
+            <input type="radio" name="gender" id="gender-woman"><label for="gender-woman">女</label>
+        </div>
+        <div class="coculate-area-text1">
+            <span>我的身高</span>
+            <input type="number" min="100" class="my-heigth">
+            <span>公分</span>
+        </div>
+        <div class="coculate-area-text2">
+            <span>我的體重</span>
+            <input type="number" min="10" class="my-weight">
+            <span>公斤</span>
+            <button class="calculate-btn" onclick="calculateBMI()">計算</button>
+            <button class="clear-btn">重新填寫</button>
+        </div>
+    </div>
+    <p class="result-all">
+        <span class="result-calc"></span>
+        <span class="result-text"></span>
+    </p>
+    <table>
+        <thead>
+            <tr>
+                <th colspan="3">BMI值</th>
+            </tr>
+
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+                <td>男性</td>
+                <td>女性</td>
+            </tr>
+            <tr>
+                <td>體重過輕</td>
+                <td class="man-weight1">&lt;20</td>
+                <td class="woman-weight1">&lt;19</td>
+            </tr>
+            <tr>
+                <td>正常範圍</td>
+                <td class="man-weight2">20~25</td>
+                <td class="woman-weight2">19~25</td>
+            </tr>
+            <tr>
+                <td>體重過重</td>
+                <td class="man-weight3">25~30</td>
+                <td class="woman-weight3">25~30</td>
+            </tr>
+            <tr>
+                <td>肥胖</td>
+                <td class="man-weight4">30~40</td>
+                <td class="woman-weight4">30~40</td>
+            </tr>
+            <tr>
+                <td>病態肥胖</td>
+                <td class="man-weight5">&gt;40</td>
+                <td class="woman-weight5">&gt;40</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+
+    <script>
+        let myHeight = document.querySelector('.my-heigth');
+        let myWeight = document.querySelector('.my-weight');
+        let resultCalc = document.querySelector('.result-calc');
+        let resultText = document.querySelector('.result-text');
+
+        let manWeight1=document.querySelector('.man-weight1');
+        let manWeight2=document.querySelector('.man-weight2');
+        let manWeight3=document.querySelector('.man-weight3');
+        let manWeight4=document.querySelector('.man-weight4');
+        let manWeight5=document.querySelector('.man-weight5');
+
+        let womanWeight1=document.querySelector('.woman-weight1');
+        let womanWeight2=document.querySelector('.woman-weight2');
+        let womanWeight3=document.querySelector('.woman-weight3');
+        let womanWeight4=document.querySelector('.woman-weight4');
+        let womanWeight5=document.querySelector('.woman-weight5');
+
+
+
+        function calculateBMI() {
+            let gender = document.querySelector('input[name="gender"]:checked');
+            if (!gender) {
+                alert('請點選性別');
+                return;
+            }
+            //防止未填寫的NAN產生
+            let height = parseFloat(myHeight.value);
+            let weight = parseFloat(myWeight.value);
+
+            if (isNaN(height) || isNaN(weight) || height <= 0 || weight <= 0) {
+                alert('請填寫有效的身高或體重');
+                return;
+            }
+
+            let myBMI = myWeight.value / (myHeight.value * myHeight.value) * 10000;
+
+            resultCalc.textContent = myBMI.toFixed(2);
+
+            if (gender.id === 'gender-man') {
+                displayResult('男', myBMI);
+            } else if (gender.id === 'gender-woman') {
+                displayResult('女', myBMI);
+            }
+        }
+
+        
+
+        function displayResult(gender, bmi) {
+            if (gender === '男') {
+                if (bmi <= 20) {
+                    resultText.textContent = '體重過輕';
+                    manWeight1.style.backgroundColor='yellow';
+                } else if (20 < bmi && bmi <= 25) {
+                    resultText.textContent = '正常範圍';
+                    manWeight2.style.backgroundColor='yellow';
+                } else if (25 < bmi && bmi <= 30) {
+                    resultText.textContent = '體重過重';
+                    manWeight3.style.backgroundColor='yellow';
+                } else if (30 < bmi && bmi <= 40) {
+                    resultText.textContent = '肥胖';
+                    manWeight4.style.backgroundColor='yellow';
+                } else {
+                    resultText.textContent = '病態肥胖';
+                    manWeight5.style.backgroundColor='yellow';
+                }
+            } else if (gender === '女') {
+                if (bmi <= 19) {
+                    resultText.textContent = '體重過輕';
+                    womanWeight1.style.backgroundColor='yellow';
+                } else if (19 < bmi && bmi <= 25) {
+                    resultText.textContent = '正常範圍';
+                    womanWeight2.style.backgroundColor='yellow';
+                } else if (25 < bmi && bmi <= 30) {
+                    resultText.textContent = '體重過重';
+                    womanWeight3.style.backgroundColor='yellow';
+                } else if (30 < bmi && bmi <= 40) {
+                    resultText.textContent = '肥胖';
+                    womanWeight4.style.backgroundColor='yellow';
+                } else {
+                    resultText.textContent = '病態肥胖';
+                    womanWeight5.style.backgroundColor='yellow';
+                }
+            }
+        }
+
+        let clearBtn = document.querySelector('.clear-btn');
+
+        clearBtn.addEventListener('click', function () {
+            document.querySelector('input[name="gender"]:checked').checked = false;
+            myHeight.value = '';
+            myWeight.value = '';
+            resultCalc.textContent = '';
+            resultText.textContent = '';
+            manWeight1.style.backgroundColor= '';
+            manWeight2.style.backgroundColor= '';
+            manWeight3.style.backgroundColor= '';
+            manWeight4.style.backgroundColor= '';
+            manWeight5.style.backgroundColor= '';
+            womanWeight1.style.backgroundColor= '';
+            womanWeight2.style.backgroundColor= '';
+            womanWeight3.style.backgroundColor= '';
+            womanWeight4.style.backgroundColor= '';
+            womanWeight5.style.backgroundColor= '';
+        });
+
+
+
+ 
+
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #b2a6a6;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            margin: 0;
+
+        }
+
+        .box-big {
+            width: 520px;
+            height: 520px;
+            background-color: #d3d3d3;
+            margin: auto;
+            padding: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            border-radius: 10px;
+        }
+
+        .box {
+            width: 50%;
+            height: 50%;
+            background-color: rgb(117, 109, 207);
+            border: 5px solid #d3d3d3;
+            border-radius: 10px;
+        }
+
+        .answer {
+            opacity: 0.5;
+        }
+
+        .btn-all {
+            position: absolute;
+            top: 100px;
+            left: 100px;
+        }
+
+        svg {
+            margin-right: 10px;
+        }
+
+        .time-score-all {
+            position: absolute;
+            left: 160px;
+            top: 300px;
+        }
+        .game-over{
+            display: none;
+            position: relative;
+            left: 45%;
+            top: 30%;
+            font-size: 50px;
+            height: 30px;
+           text-align: center;
+        }
+        .small-word{
+            font-size: 25px;
+        }
+       
+        .continue-btn{
+            display: none;
+        }
+        .stop-btn{
+            display: none;
+        }
+        .hidden {
+            display: none;
+        }
+        .show {
+            display: block;
+        }
+        .glass{
+            width:800px ;
+            height: 100%;
+            position: absolute;
+            /* background-color: #ffffff82; */
+            left:25%;
+            z-index: 5;
+            
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="glass"></div>
+    <div class="btn-all">
+        <button class="start-game"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-play" viewBox="0 0 16 16">
+                <path
+                    d="M10.804 8 5 4.633v6.734zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696z" />
+            </svg>開始</button>
+        <button class="stop-btn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-pause-fill" viewBox="0 0 16 16">
+                <path
+                    d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5m5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5" />
+            </svg>暫停</button>
+        <button class="continue-btn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-repeat" viewBox="0 0 16 16">
+                <path
+                    d="M11 5.466V4H5a4 4 0 0 0-3.584 5.777.5.5 0 1 1-.896.446A5 5 0 0 1 5 3h6V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192m3.81.086a.5.5 0 0 1 .67.225A5 5 0 0 1 11 13H5v1.466a.25.25 0 0 1-.41.192l-2.36-1.966a.25.25 0 0 1 0-.384l2.36-1.966a.25.25 0 0 1 .41.192V12h6a4 4 0 0 0 3.585-5.777.5.5 0 0 1 .225-.67Z" />
+            </svg>繼續遊戲</button>
+    </div>
+    <div class="game-over">
+        <p>遊戲結束!</p>
+        <!-- <p><span class="small-word">你完成了</span>
+            <span class="result-level"></span>
+            <span class="small-word">關</span>
+        </p> -->
+    </div>
+    <div class="box-big"></div>
+    <div class="time-score-all">
+        <div><span>時間剩餘:</span><span class="time"></span><span>秒</span></div>
+        <div><span>目前是第</span><span class="player-level"></span><span>關</span></div>
+    </div>
+
+    <script>
+        let level = 2;
+        let size = 100 / level;
+        let boxBig = document.querySelector('.box-big');
+        let count = 0;
+        game();
+
+        let playerLevel = document.querySelector('.player-level');
+        let startLevel = 1;
+        playerLevel.innerHTML = startLevel;
+
+
+
+        function game() {
+            // 1. 清空
+            boxBig.innerHTML = '';
+
+            // 2. 產生小box及顏色
+            // ‵‵ => 是樣板符號 => 樣板語言
+            let color =
+                `rgba(${Math.floor(Math.random() * 200) + 1}, ${Math.floor(Math.random() * 200) + 1} ,${Math.floor(Math.random() * 200) + 1},0.5)`;
+            //  **2 是開二次方 **3三次方
+            // i ++ => i = i + 1
+            // i -- => i = i - 1
+
+            for (let i = 0; i < level ** 2; i++) {
+                // boxBig.innerHTML = boxBig.innerHTML + 'A';
+                // boxBig.innerHTML += 'A';
+                boxBig.innerHTML +=
+                    `<div class="box" style="width:${size}%; height:${size}%; background-color:${color};">`;
+
+            }
+            // 3 產生解答方塊
+            let randomAnswer = Math.floor(Math.random() * level ** 2) + 1; //為了配合 css 使用 nth-of-type()
+            let answerBox = document.querySelector(`.box-big .box:nth-of-type(${randomAnswer})`);
+            answerBox.classList.add("answer");
+
+            // 4.為遊戲增加難度 => opcity 是變動的
+            answerBox.style.opacity = `${0.5 + level * 0.005}`;
+            // 5. 互動 => 綁監聽事件
+            let answerBtn = document.querySelector('.answer');
+            answerBtn.addEventListener('click', function () {
+                count++;
+                if (count === level) {
+                    level++;
+                    size = 100 / level;
+                    count = 0;
+
+                }
+
+                game();
+                //點到答案進入下一關
+                startLevel++;
+                playerLevel.innerHTML = startLevel;
+                // let resultLevel=document.querySelector('.result-level');
+                // resultLevel.innerHTML=startLevel;
+
+            });
+
+        }
+
+        
+
+        //設定時間倒數(函式:setInterval)
+        let totalTime = 60;
+        let time = document.querySelector('.time');
+        let gameOver=document.querySelector('.game-over');
+
+        time.innerHTML = totalTime;
+        
+
+        let startGame=document.querySelector('.start-game');
+        let glass=document.querySelector('.glass');
+        startGame.addEventListener('click',()=>{
+            counterInterval = setInterval(Timer, 1000);
+            Timer();
+            startGame.classList.add('hidden');
+            stopBtn.classList.add('show');
+            glass.classList.add('hidden');
+            
+        });
+
+
+       
+        function Timer() {
+            time.innerHTML = totalTime--;
+            if (totalTime < 0) {
+                clearInterval(counterInterval);
+                time.innerHTM=0;
+                // 隱藏方塊、按鈕 + game-over提示跳出
+                boxBig.classList.add('hidden');
+                gameOver.classList.add('show');
+                continueBtn.classList.add('hidden');
+                stopBtn.classList.remove('show');
+                continueBtn.classList.remove('show');
+            }
+        };
+
+        //遊戲暫停--時間暫停(函式:clearInterval)
+        let stopBtn=document.querySelector('.stop-btn');
+        stopBtn.addEventListener('click',()=>{
+            clearInterval(counterInterval);
+            stopBtn.classList.remove('show');
+            continueBtn.classList.add('show');
+            glass.classList.remove('hidden');
+        });
+        //遊戲繼續--時間繼續倒數(函式:setInterval)
+        let continueBtn=document.querySelector('.continue-btn');
+        continueBtn.addEventListener('click',()=>{
+            counterInterval = setInterval(Timer, 1000)
+            continueBtn.classList.remove('show');
+            stopBtn.classList.add('show');
+            glass.classList.add('hidden');
+        });
+
+    </script>
+
+</body>
+
+</html>

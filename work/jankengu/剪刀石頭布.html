@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .computer-pic {
+        width: 80%;
+        height: 400px;
+        margin-bottom: 50px;
+        display: flex;
+        /* background-color: #f14d4d; */
+        border: 2px solid #000;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .computer-pic-small {
+        width: 500px;
+        height: 300px;
+        /* background-color: #afbe84; */
+
+    }
+
+    .button-all {
+        display: flex;
+
+    }
+
+    button {
+        display: block;
+        width: 100px;
+        height: 100px;
+        margin-right: 20px;
+        cursor: pointer;
+        /* border-radius: 10px; */
+    }
+
+    .paper {
+        margin-right: 0;
+    }
+</style>
+
+<body>
+    <marquee direction="left" scrollamount="10" width="80%">登登登登~邊緣人陪玩器 (陽春版1.0.0 ver.)</marquee>
+    <div class="computer-pic">
+        <img class="computer-pic-small" src="https://www.profitemag.com/images/Blog/Media/2022/469/01.jpeg" alt="">
+    </div>
+    <div class="button-all">
+        <button class="scissors">剪刀</button>
+        <button class="stone">石頭</button>
+        <button class="paper">布</button>
+    </div>
+
+
+    <script>
+        let scissorsBtn = document.querySelector('.scissors');
+        let stoneBtn = document.querySelector('.stone');
+        let paperBtn = document.querySelector('.paper');
+
+        let playerWins = 0;
+        let round = 0;
+
+
+        function playGame() {
+            let computerChoice = Math.floor(Math.random() * 3) + 1;
+            // let computerChoice = '';
+            // console.log(randomNumber);
+            if (computerChoice === 1) {
+                console.log('剪刀');
+            }
+            else if (computerChoice === 2) {
+                console.log('石頭');
+            }
+            else {
+                console.log('布');
+            }
+            return computerChoice;
+            console.log(computerChoice);
+        }
+
+
+
+        scissorsBtn.addEventListener('click', function () {
+            let computerChoice = playGame();  // 獲取 playGame 返回的值
+            if (computerChoice === 1) {
+                round++;
+                alert(`第${round}回合，多啦出剪刀，平手!`);
+            } else if (computerChoice === 2) {
+                round++;
+                alert(`第${round}回合，多啦出石頭，你輸了!`);
+            } else {
+                round++;
+                playerWins++;
+                alert(`第${round}回合，多啦出布，你贏了!
+你總共贏多啦${playerWins}次!`);
+            }
+        });
+        stoneBtn.addEventListener('click', function () {
+            let computerChoice = playGame();  // 獲取 playGame 返回的值
+            if (computerChoice === 1) {
+                playerWins++;
+                round++;
+                alert(`第${round}回合，多啦出剪刀，你贏了! 
+你總共贏多啦${playerWins}次!`);
+            } else if (computerChoice === 2) {
+                round++;
+                alert(`第${round}回合，多啦出石頭，平手!`);
+            } else {
+                round++;
+                alert(`第${round}回合，多啦出布，你輸了!`);
+            }
+        });
+        paperBtn.addEventListener('click', function () {
+            let computerChoice = playGame();  // 獲取 playGame 返回的值
+            if (computerChoice === 1) {
+                round++;
+                alert(`第${round}回合，多啦出剪刀，你輸了!`);
+            } else if (computerChoice === 2) {
+                playerWins++;
+                round++;
+                alert(`第${round}回合，多啦出石頭，你贏了! 
+你總共贏多啦${playerWins}次!`);
+            } else {
+                round++;
+                alert(`第${round}回合，多啦出布，平手!`);
+            }
+        });
+
+
+
+
+    </script>
+
+</body>
+
+</html>

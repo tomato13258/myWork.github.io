@@ -1,0 +1,152 @@
+// 1080、960、400
+.swiper-wrapper{
+    padding-bottom: 60px;
+}
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: left
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+picture{
+    position: relative;
+    .swiper-slide-textbox1{
+        position: absolute;
+        width: 30%;
+        left: 10%;
+        top: 20%;
+        h3{
+            font-weight: 400;
+        }
+    }
+    .swiper-slide-textbox2{
+        position: absolute;
+        width: 30%;
+        right: 10%;
+        bottom: 20%;
+        h3{
+            font-weight: 400;
+        }
+    }
+}
+@media(max-width:1200px) {
+    picture{
+        .swiper-slide-textbox1{
+            background-color: #fff;
+            top:420px;
+            width:90%;
+            left:5%;
+            padding-left: 50px;
+            padding-bottom: 20px;
+            // padding-top: 25px;
+            // height: 250px;
+            box-shadow: 0 0 5px #000;
+        }
+        .swiper-slide-textbox2{
+            background-color: #fff;
+            top:420px;
+            width:90%;
+            left:5%;
+            padding-left: 50px;
+            padding-bottom: 20px;
+            // padding-top: 25px;
+            height: 200px;
+            box-shadow: 0 0 5px #000;
+        }
+    }
+    .swiper-wrapper{
+        padding-bottom: 150px;
+    }
+}
+@media(max-width:1020px) {
+    .swiper-wrapper{
+        padding-bottom: 220px;
+    }
+    
+}
+// @media(max-width:800px) {
+//     .swiper-wrapper{
+//         padding-bottom: 350px;
+//     }
+// }
+button {
+    display: inline-block;
+    font-size: 1rem;
+    background-color: #3f61ac;
+    padding: 10px 20px;
+    font-weight: 700;
+    color: #ffffff;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    border:0;
+    &:hover {
+        background-color: #334f8b;
+        color: #c4c4c4;
+    }
+
+    &:active {
+        border: 4px dotted #fff;
+    }
+}
+.swiper-button-next,.swiper-button-prev{
+    top: 98%;
+    color: #000;
+    display:block;
+    // background-color: #914949;
+    text-align: center;
+    line-height: 45px;
+    width: 40px;
+    z-index: 20;
+    
+    
+    &:active{
+            border: 4px dotted #000;
+            // transition: 0.5;
+        }
+        
+        
+    }
+.swiper-button-prev{
+    left: 40%;
+    transition: 0.5s  ease;
+    &:hover{
+        transform: translate(-10px,0);
+        
+    }
+}
+.swiper-button-next{
+    right: 40%;
+    transition: 0.5s  ease;
+    &:hover{
+        transform: translate(10px,0);
+        
+    }
+}
+.swiper-button-next:after, .swiper-button-prev:after {
+    font-size: 20px;
+    
+   
+}
+.swiper-pagination-bullet-active {
+    background: #000;
+}
+.swiper {
+    overflow: visible;
+    
+}

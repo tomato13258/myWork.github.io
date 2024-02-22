@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <header>
+        <div class="section1">
+            <div class="direc-text">
+                <div class="">
+                    <span>資料來源：中央氣象局API資料</span>
+                    <span>即時資料為自動產生，未經人工完整檢驗，僅提供參考。</span>
+                    <span>時間預測區間：<span class="time-update"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <span>LOGO</span>
+    </header>
+
+
+    <nav>
+        <div class="nav-btn-all">
+            <button class="nav-btn clicked">全國</button>
+            <button class="nav-btn">北部</button>
+            <button class="nav-btn">中部</button>
+            <button class="nav-btn">南部</button>
+            <button class="nav-btn">東部</button>
+            <button class="nav-btn">離島</button>
+        </div>
+    </nav>
+    <div class="timer">
+        <div class="time-box">
+            <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                    <path
+                        d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
+                </svg>現在時間</span>
+            <span id="time-now"></span>
+        </div>
+    </div>
+    <section class="section2">
+        <div class="card-all">
+            <div class="card">
+
+            </div>
+        </div>
+
+        </div>
+    </section>
+
+    <footer></footer>
+
+    <script>
+        let btnAll = document.querySelectorAll('.nav-btn');
+
+
+        let cities = [
+            ['基隆市', '新北市', '臺北市', '桃園市', '新竹市', '新竹縣', '苗栗縣', '臺中市', '南投縣', '彰化縣', '雲林縣', '嘉義市', '嘉義縣', '臺南市',
+                '高雄市', '屏東縣', '宜蘭縣', '花蓮縣', '臺東縣', '澎湖縣', '金門縣', '連江縣'
+            ],
+            ['基隆市', '新北市', '臺北市', '桃園市', '新竹市', '新竹縣', '苗栗縣'],
+            ['臺中市', '南投縣', '彰化縣', '雲林縣', '嘉義市', '嘉義縣'],
+            ['臺南市', '高雄市', '屏東縣'],
+            ['宜蘭縣', '花蓮縣', '臺東縣'],
+            ['澎湖縣', '金門縣', '連江縣'],
+        ];
+
+        let nowCities = cities[0];
+        let orgData = {};
+
+
+
+
+        let url =
+            'https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=CWA-A7F5CA9C-F09B-4C56-A18B-A17E16268FCF';
+
+        //主程式
+        fetch_data();
+
+        btnAll.forEach((btn, index) => {
+            btn.addEventListener('click', () => {
+                console.log(999, index);
+                nowCities = cities[index];
+                fetch_data();
+            });
+        });
+
+        function fetch_data() {
+            fetch(url)
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (datas) {
+                    console.log(datas);
+                    // 1. 組織資料
+                    organizationData(datas);
+
+                    // 2. 處理城市
+                    arrangeCites();
+                });
+        }
+
+        function organizationData(data) {
+            // console.log(data.records.location);
+            let locationAll = data.records.location
+            console.log(locationAll);
+            locationAll.forEach(location => {
+                let locationName = location.locationName;
+                let loc_wE_t0 = location.weatherElement[0].time[0];
+                let wxCondition = loc_wE_t0.parameter.parameterName;
+                let startTime = loc_wE_t0.startTime;
+                let endTime = loc_wE_t0.endTime;
+                let maxT = location.weatherElement[4].time[0].parameter.parameterName;
+                let minT = location.weatherElement[2].time[0].parameter.parameterName;
+                let pop = location.weatherElement[1].time[0].parameter.parameterName;
+                let ci = '舒適'
+                console.log(maxT);
+                // 非常好而特別的方法
+                orgData[locationName] = {
+                    'wxCondition': wxCondition,
+                    startTime: startTime,
+                    endTime: endTime,
+                    maxT: maxT,
+                    minT: minT,
+                    ci: ci,
+                    pop: pop,
+                }
+                console.log(orgData);
+                let timeUpdate = document.querySelector('.time-update')
+                timeUpdate.innerHTML = endTime;
+            });
+
+        }
+
+
+
+
+        function arrangeCites() {
+            let cardRegion = document.querySelector('.card-all');
+            cardRegion.innerHTML = '';
+            nowCities.forEach((city, index) => {
+                let cityData = orgData[city];
+                console.log(city, cityData);
+                cardRegion.innerHTML += `
+                <div class="card">
+                <div class="city">${city}</div>
+                <div class="card-content">
+                    <div class="card-left">
+                        <div class="card-pic">
+                            <img src="./img/${cityData.wxCondition}.svg" alt="">
+                            </div>
+                        <div class="card-left-text">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-thermometer" viewBox="0 0 16 16">
+  <path d="M8 14a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/>
+  <path d="M8 0a2.5 2.5 0 0 0-2.5 2.5v7.55a3.5 3.5 0 1 0 5 0V2.5A2.5 2.5 0 0 0 8 0M6.5 2.5a1.5 1.5 0 1 1 3 0v7.987l.167.15a2.5 2.5 0 1 1-3.333 0l.166-.15z"/>
+</svg>
+                            <div class="tempurter">${cityData.maxT}°C</div>
+                            <div class="ci">${cityData.ci}</div>
+                        </div>
+                    </div>
+                    <div class="card-right">
+                        <span class="weather">
+                            <div>${cityData.wxCondition}</div>
+                        </span>
+                        <span>
+                            <div class="pop">降雨:${cityData.pop}%</div>
+                            <div  class="minT">最低溫度:${cityData.minT}°C</div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+                `
+            })
+
+
+        }
+
+
+
+
+        setInterval(myTimer, 1000);
+
+        function myTimer() {
+            const d = new Date();
+            document.getElementById("time-now").innerHTML = d.toLocaleTimeString();
+        }
+
+        // 取得所有按鈕元素
+        const buttons = document.querySelectorAll('.nav-btn');
+        
+
+        // 對每個按鈕都添加點擊事件監聽器
+        buttons.forEach(button => {
+            button.addEventListener('click', function () {
+                // 將所有按鈕重置為原始狀態
+                buttons.forEach(btn => btn.classList.remove('clicked'));
+                // 添加或移除 clicked 類，以改變按鈕的樣式
+                button.classList.add('clicked');
+            });
+        });
+
+
+    </script>
+
+
+
+</body>
+
+</html>

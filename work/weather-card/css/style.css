@@ -1,0 +1,227 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+}
+
+body {
+  box-sizing: border-box;
+  position: relative;
+  font-family: "微軟正黑體";
+}
+
+header {
+  width: 100%;
+  height: 550px;
+  background-repeat: none;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+header::after {
+  content: "";
+  display: block;
+  height: 800px;
+  width: 800px;
+  border-radius: 50%;
+  background-color: transparent;
+  box-shadow: 0 0 100px #9CC2CA;
+  position: absolute;
+  right: -300px;
+  top: -400px;
+  z-index: 1;
+}
+
+nav {
+  background-color: #9CC2CA;
+  padding: 20px;
+  margin-bottom: 100px;
+}
+nav .nav-btn-all {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+nav .nav-btn-all button {
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  margin-right: 20px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 24px;
+  background-color: transparent;
+  cursor: pointer;
+}
+nav .nav-btn-all button.clicked {
+  color: #2AEEEE;
+  background-color: #888888;
+  border: 2px solid #2AEEEE;
+}
+
+.timer {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 100px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+.timer .time-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  border-left: 10px solid #9CC2CA;
+  border-right: 10px solid #9CC2CA;
+  padding: 20px 80px;
+  width: 20%;
+}
+.timer .time-box span {
+  font-size: 36px;
+  font-weight: 100;
+  letter-spacing: 5px;
+  display: flex;
+  align-items: center;
+  color: #888888;
+}
+.timer .time-box span svg {
+  width: 20px;
+  height: 20px;
+  margin-right: 20px;
+}
+.timer .time-box #time-now {
+  margin-top: 50px;
+}
+
+.section1 {
+  display: flex;
+  justify-content: start;
+  position: absolute;
+  left: -200px;
+  top: -180px;
+}
+.section1 .direc-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 0;
+  margin-bottom: 100px;
+}
+.section1 .direc-text div {
+  width: 550px;
+  height: 490px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 50%;
+  padding-top: 300px;
+  padding-left: 300px;
+  align-items: start;
+  background-color: #9CC2CA;
+  border-radius: 50%;
+  font-size: 20px;
+}
+.section1 .direc-text div span {
+  margin-bottom: 50px;
+  color: #6b6b6b;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.section2 {
+  margin-bottom: 100px;
+}
+.section2 .card-all {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  -moz-column-gap: 50px;
+       column-gap: 50px;
+  row-gap: 20px;
+  letter-spacing: 3px;
+}
+.section2 .card-all .city {
+  text-align: center;
+  font-size: 32px;
+  padding-bottom: 20px;
+  color: #888888;
+  font-weight: 700;
+}
+.section2 .card-all .card-content {
+  height: 250px;
+  background-color: #9CC2CA;
+  padding: 20px;
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  border-radius: 5px;
+}
+.section2 .card-all .card-content::after {
+  content: "";
+  display: block;
+  border-left: 1px solid rgb(219, 219, 219);
+  /* 1px 寬的實線，可以根據需要調整顏色和寬度 */
+  height: 250px;
+  position: absolute;
+  left: 40%;
+  top: 20px;
+  /* 線的寬度，可以根據需要調整 */
+}
+.section2 .card-all .card-content .card-left {
+  width: 150px;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  padding: 0 10px;
+}
+.section2 .card-all .card-content .card-left .card-pic {
+  background-repeat: no-repeat;
+  width: 100px;
+  height: 100px;
+}
+.section2 .card-all .card-content .card-left .card-left-text {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-around;
+  color: #fff;
+  align-items: center;
+}
+.section2 .card-all .card-content .card-left .card-left-text .tempurter {
+  margin-right: 20px;
+}
+.section2 .card-all .card-content .card-left .card-left-text svg {
+  width: 25px;
+  height: 25px;
+}
+.section2 .card-all .card-content .card-right {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding-left: 50px;
+  color: #fff;
+}
+.section2 .card-all .card-content .card-right .weather {
+  text-align: center;
+  font-size: 28px;
+}
+.section2 .card-all .card-content .card-right .pop {
+  margin-bottom: 10px;
+}
+
+footer {
+  width: 100%;
+  height: 100px;
+  background-color: #888888;
+}/*# sourceMappingURL=style.css.map */

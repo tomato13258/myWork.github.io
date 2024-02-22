@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/todolist.css">
+</head>
+
+<body>
+    <div class="background">
+        <div class="box-all">
+            <div class="box box-top">
+                <input type="text" class="add-text" placeholder="請輸入待辦事項...">
+                <button class="addBtn">新增</button>
+            </div>
+            <div class="box box-mid">
+                <button class="all-btn btn">全部</button>
+                <button class="finish-btn btn">已執行</button>
+                <button class="unfinish-btn btn">未執行</button>
+            </div>
+            <div class="box box-bottom">
+                <div class="box-bottom-nav">
+                    <span>執行</span>
+                    <span>事項</span>
+                    <span>功能</span>
+                </div>
+                <div class="line"></div>
+                <!-- JS新增to do表單 -->
+                <div class="todoitem-all">
+                    <!-- <div class="box-bottom-todoitem">
+                        <input type="checkbox">
+                        <span class="todo-title"></span>
+                        <div class="box-bottom-buttons">
+                            <button>修改</button>
+                            <button>刪除</button>
+                        </div>
+                    </div> -->
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+    <script>
+        const btnAll = document.querySelectorAll('.btn');
+        const todoitemAll = document.querySelector('.todoitem-all');
+        let arr = [];
+        if (localStorage.getItem('todoList')) {
+            arr = JSON.parse(localStorage.getItem('todoList'));
+        }
+        output(arr);
+
+        btnAll.forEach(btn => {
+            btn.addEventListener('click', () => {
+                btnAll.forEach(button => {
+                    button.classList.remove('button-click');
+                });
+                btn.classList.add('button-click');
+                const filter = btn.classList.contains('all-btn') ? 'all' :
+                    btn.classList.contains('finish-btn') ? 'finish' :
+                        btn.classList.contains('unfinish-btn') ? 'unfinish' : '';
+                let filteredArr;
+                switch (filter) {
+                    case 'all':
+                        filteredArr = arr;
+                        break;
+                    case 'finish':
+                        filteredArr = arr.filter(item => item.check);
+                        break;
+                    case 'unfinish':
+                        filteredArr = arr.filter(item => !item.check);
+                        break;
+                    default:
+                        break;
+                }
+                output(filteredArr);
+            });
+        });
+
+        const addText = document.querySelector('.add-text');
+        const addBtn = document.querySelector('.addBtn');
+        addBtn.addEventListener('click', () => {
+            const text = addText.value.trim();
+            const id = arr.length;
+            if (text !== '') {
+                const addArr = {
+                    id: id + 1,
+                    check: false,
+                    text: text,
+                }
+                arr.push(addArr);
+                output(arr);
+            }
+        });
+
+        function editText(id) {
+            const content = prompt('修改文字').trim();
+            if (content !== null && content !== '') {
+                arr.forEach(item => {
+                    if (item.id === id) {
+                        item.text = content;
+                    }
+                });
+                output(arr);
+            }
+        }
+
+        function deleteText(id) {
+            if (confirm('你真ㄉ要刪除ㄇ?')) {
+                arr = arr.filter(item => item.id !== id);
+                output(arr);
+                window.alert('已刪除');
+            }
+        }
+
+        function toggleCheck(id) {
+            arr.forEach(item => {
+                if (item.id === id) {
+                    item.check = !item.check;
+                }
+            });
+        }
+
+        function output(arr) {
+            todoitemAll.innerHTML = '';
+            arr.forEach(item => {
+                todoitemAll.innerHTML += `
+                <div class="box-bottom-todoitem">
+                    <input type="checkbox" class="checkingbox" data-id="${item.id}" ${item.check ? 'checked' : ''}>
+                    <span class="todo-title">${item.text}</span>
+                    <div class="box-bottom-buttons">
+                        <button type="button" class="editBtn">修改</button>
+                        <button type="button" class="deleteBtn">刪除</button>
+                    </div>
+                </div>`;
+            });
+
+            const arrData = JSON.stringify(arr);
+            localStorage.setItem('todoList', arrData);
+
+            const editBtns = document.querySelectorAll('.editBtn');
+            editBtns.forEach(editBtn => {
+                editBtn.addEventListener('click', () => {
+                    const id = editBtn.parentElement.parentElement.querySelector('.checkingbox').dataset.id;
+                    editText(parseInt(id));
+                });
+            });
+
+            const deleteBtns = document.querySelectorAll('.deleteBtn');
+            deleteBtns.forEach(deleteBtn => {
+                deleteBtn.addEventListener('click', () => {
+                    const id = deleteBtn.parentElement.parentElement.querySelector('.checkingbox').dataset.id;
+                    deleteText(parseInt(id));
+                });
+            });
+
+            const checkingboxes = document.querySelectorAll('.checkingbox');
+            checkingboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', () => {
+                    const id = parseInt(checkbox.dataset.id);
+                    toggleCheck(id);
+                    // const arrData = JSON.stringify(arr);
+                    // localStorage.setItem('todoList', arrData);
+                });
+            });
+        }
+
+    </script>
+</body>
+
+
+
+</html>

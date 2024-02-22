@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+
+        }
+
+        body {
+            margin: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: #17244e;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: '微軟正黑體';
+        }
+
+        .btn{
+            display: block;
+            margin-bottom: 30px;
+            width: 150px;
+            height: 60px;
+            background-color: #ff00dd;
+            text-align: center;
+            line-height:  60px;
+            color: #ffffff; 
+            font-size: 25px;
+            font-weight: 900;
+            border-radius: 50px;
+            text-decoration: none;
+        }
+        .btn:hover{
+            background-color: #bdc738;
+            color: #505050;
+        }
+        
+
+
+
+        .box {
+            width: 800px;
+            height: 100px;
+            border: 5px solid #b538c5;
+            padding: 8px;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+
+        .circle {
+            width: 70px;
+            height: 70px;
+            background-color: #ebee25;
+            border-radius: 50%;
+            position: relative;
+            animation-name: circle;
+            animation-duration: 10s;
+            animation-iteration-count: 1;
+            animation-timing-function: linear;
+        }
+
+        .circle::before {
+            content: "";
+            display: block;
+            width: 10px;
+            height: 10px;
+            background-color: #17244e;
+            border-radius: 50%;
+            position: absolute;
+            right: 15px;
+            top: 15px;
+        }
+
+        .circle::after {
+            content: "";
+            display: block;
+            width: 40px;
+            height: 35px;
+            background-color: #17244e;
+            clip-path: polygon(100% 0, 21% 51%, 100% 100%);
+            position: absolute;
+            right: -2px;
+            top: 25px;
+            animation-name: mouth-move;
+            animation-duration: 1s;
+            animation-iteration-count: 10;
+
+        }
+
+        @keyframes mouth-move {
+            50% {
+                clip-path: polygon(100% 52%, 21% 51%, 100% 52%);
+            }
+        }
+
+        @keyframes circle {
+            100% {
+                transform: translate(700px, 0);
+            }
+        }
+
+        .dot-all {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            /* background-color: #af8d8d; */
+            justify-content: space-around;
+            align-items: center;
+
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            background-color: #ffffff;
+            border-radius: 50%;
+        }
+
+        .dot-1 {
+            animation-duration: 11s;
+            animation-name: dot-1;
+            animation-iteration-count: 1;
+            animation-timing-function: linear;
+            animation-delay: 1s
+        }
+
+        @keyframes dot-1 {
+            0% {
+                background-color: #ffffff;
+            }
+
+            10% {
+                background-color: transparent;
+            }
+
+            100% {
+                background-color: transparent;
+            }
+        }
+
+        .dot-2 {
+            animation-duration: 8s;
+            animation-name: dot-2;
+            animation-iteration-count: 1;
+            animation-timing-function: linear;
+            animation-delay: 2.8s
+        }
+
+        @keyframes dot-2 {
+            0% {
+                background-color: #ffffff;
+            }
+
+            10% {
+                background-color: transparent;
+            }
+
+            100% {
+                background-color: transparent;
+            }
+        }
+
+        .dot-3 {
+            animation-duration: 7s;
+            animation-name: dot-3;
+            animation-iteration-count: 1;
+            animation-timing-function: linear;
+            animation-delay: 5s
+        }
+
+        @keyframes dot-3 {
+            0% {
+                background-color: #ffffff;
+            }
+
+            10% {
+                background-color: transparent;
+            }
+
+            100% {
+                background-color: transparent;
+            }
+        }
+
+        .dot-4 {
+            animation-duration: 6s;
+            animation-name: dot-4;
+            animation-iteration-count: 1;
+            animation-timing-function: linear;
+            animation-delay: 7s
+        }
+
+        @keyframes dot-4 {
+            0% {
+                background-color: #ffffff;
+            }
+
+            10% {
+                background-color: transparent;
+            }
+
+            100% {
+                background-color: transparent;
+            }
+        }
+
+        .dot-5 {
+            animation-duration: 2s;
+            animation-name: dot-5;
+            animation-iteration-count: 1;
+            animation-timing-function: linear;
+            animation-delay: 9s
+        }
+
+        @keyframes dot-5 {
+            0% {
+                background-color: #ffffff;
+            }
+
+            10% {
+                background-color: transparent;
+            }
+
+            100% {
+                background-color: transparent;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <a class="btn" href="./index.html">再吃一輪 ! </a>
+    <div class="box">
+        <div class="disappear-box"></div>
+        <div class="circle"></div>
+        <div class="dot-all">
+            <div class="dot dot-1"></div>
+            <div class="dot dot-2"></div>
+            <div class="dot dot-3"></div>
+            <div class="dot dot-4"></div>
+            <div class="dot dot-5"></div>
+        </div>
+
+    </div>
+</body>
+
+</html>
