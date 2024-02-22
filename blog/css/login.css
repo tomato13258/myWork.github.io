@@ -1,0 +1,31 @@
+* {
+  margin: 0;
+}
+
+body {
+  box-sizing: border-box;
+}
+
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #5fc498;
+}
+.container .box {
+  background-color: #fff;
+  padding: 100px 150px;
+  border-radius: 5px;
+}
+.container .box .login-box {
+  margin-bottom: 20px;
+}
+.container .box .login-btn-all {
+  display: flex;
+  justify-content: space-between;
+}
+.container .box .login-btn-all .regis-btn {
+  margin-left: 50px;
+}/*# sourceMappingURL=login.css.map */
