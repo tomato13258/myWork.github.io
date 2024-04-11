@@ -1,0 +1,37 @@
+* {
+    margin: 0
+}
+
+body {
+    box-sizing: border-box;
+    // background-color: #ab8a8a;
+}
+
+.container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #5fc498;
+    // background-image: url(https://i.pinimg.com/originals/30/10/e9/3010e997aba46ec4be39780981c1b972.jpg);
+    // background-repeat: no-repeat;
+    // background-size: contain;
+    .box {
+        background-color: #fff;
+        padding: 100px 150px;
+        border-radius: 5px;
+        .login-box{
+            margin-bottom: 20px;
+        }
+        .login-btn-all{
+            // background-color: #d09797;
+            display: flex;
+            justify-content: space-between;
+            .regis-btn{
+                margin-left: 50px;
+            }
+        }
+    }
+
+}

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/login.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="box">
+            <div class="login-box">
+                <div class="account">
+                    帳號
+                    <input type="text" class="user-account">
+                </div>
+                <div class="pass">
+                    密碼
+                    <input type="password" class="user-password">
+                </div>
+            </div>
+            <div class="login-btn-all">
+                <button class="regis-btn">註冊</button>
+                <button class="login-btn">登入</button>
+            </div>
+            <div class="">hint:帳密123</div>
+        </div>
+    </div>
+
+
+    <script>
+        const loginBtn = document.querySelector('.login-btn');
+
+        let arr = [
+            {   
+                username:'一鹿狂飆',
+                account: '123',
+                pass: '123'
+            },
+            {
+                username:'萬鹿狂奔',
+                account: '1234',
+                pass: '1234'
+            }
+        ];
+
+        loginBtn.addEventListener('click', () => {
+            const userAccount = document.querySelector('.user-account');
+            const userPassword = document.querySelector('.user-password');
+            let accountInput = userAccount.value;
+            let passInput = userPassword.value;
+
+            let boolinLogin=false;
+            console.log(boolinLogin);
+            arr.forEach(item => {
+                if (accountInput === item.account) {
+                    boolinLogin=true;
+                    if (passInput === item.pass) {
+                        alert('登入成功');
+                        window.location.href = 'index.html';
+                        localStorage.setItem('loggedInUser', JSON.stringify(item));
+                        return;
+                    }
+                    else {
+                        alert('密碼錯誤!你要不要再想一想')
+                        return;//跳出foreach循環
+                    }
+
+                }
+
+            });
+            if(!boolinLogin){
+                alert('帳號錯誤!請聯絡管理人');
+            }
+
+
+             //筆記:如果用foreach去尋找arr內的東東，會因為發現不符合而同時跳出錯誤訊息和對的提示
+            // arr.forEach(item => {
+
+            //     if (accountInput === item.account) {
+            //         if (passInput === item.pass) {
+            //             alert('登入成功')
+            //         }
+            //         else {
+            //             alert('密碼錯誤!你要不要再想一想')
+            //         }
+
+            //     }
+            //     else {
+            //         alert('帳號錯誤!請聯絡管理人');
+            //     };
+
+            // });
+
+
+        });
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>
